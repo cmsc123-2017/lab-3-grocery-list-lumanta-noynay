@@ -6,29 +6,33 @@ class GroceryListArray implements IGroceryList {
   
   GroceryListArray() {}
     
-  
+  // GroceryItem -> boolean
+  // Accepts this item to the array list
+  // Returns true if this item is successfully added, false otherwise
   public boolean add(GroceryItem item) {
     if (size == max) {
-      // create new array with bigger length
-      // int max = max + 10;
-      // GroceryItems bigger[] = new GroceryItem[max]
-      // copy items to new array
-      // assign new array to items
+      int i = 0;
+      max += 10;
+      GroceryItem newList[] = new GroceryItem[max];
       
-      return false; // don't return instead
+      for(i = 0; i < items.length; i++){
+        newList[i] = items[i];
+      }
+      
+      newList[i + 1] = item;
+      items = newList;
     }
-    
     int i = indexOf(item.name);
-    if (i > -1) {
+    if (i > -1){
       items[i].addQuantity(item.quantity);
-    } else {    
+    }
+    else{
       items[this.size] = item;
       this.size++;
-      
     }
     return true;
   }
-  
+     
   // TEMPLATE
   /*  Fields:
    *    this.max
@@ -63,15 +67,42 @@ class GroceryListArray implements IGroceryList {
     return -1;
   }
   
-  
+  // String -> boolean
+  // Given the name of a GroceryItem, determines if the GroceryItem is successfully removed from
+  // the GroceryListArray, returns false if not.
   public boolean remove(String name) {
-    return false;
+    int i = 0;
+    boolean isOnList = false;
+    for (i = 0; i < this.size; i++){
+      if (items[i].name.equals(name)){
+        isOnList = true;
+        items[i] = items[size - 1];
+        break;
+      }
+    }
+
+    max--;
+    this.size--;
+    return isOnList;
   }
-  
+
+
+  // String -> boolean
+  // Given the name of a GroceryItem, returns true if the GorceryItme is sucessfully
+  // makredAsBought, returs false if not
   public boolean markAsBought(String name) {
-    return false;
+    int i = indexOf(name);
+    if (i >= 0){
+      items[i].isBought = true;
+      return true;
+    }
+    else{
+      return false;
+    }
   }
   
+  // ->
+  // Displays list of items
   public void display() {
     for (int i = 0; i < this.size; i++) {
       System.out.println(items[i]);
