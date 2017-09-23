@@ -4,11 +4,30 @@ class GroceryListArray implements IGroceryList {
   GroceryItem items[] = new GroceryItem[max];
   int size = 0;
   
-  GroceryListArray() {}
-    
-  // GroceryItem -> boolean
-  // Accepts this item to the array list
-  // Returns true if this item is successfully added, false otherwise
+  // CONSTRUCTOR
+  GroceryListArray() {
+  }
+   
+   // TEMPLATE:
+ /* Fields:
+  * 
+  * Methods:
+  * add(GroceryItem item)      -- boolean
+  * remove(String name)        -- boolean
+  * markAsBought(String name)  -- boolean
+  * display()                  -- void
+  * isOnTheList(String name)   -- boolean
+  * 
+  * 
+  * Methods of GroceryItem:
+  * toString()       -- String
+  * equals(Object o) -- boolean
+  * 
+  */
+  
+  
+ // GroceryItem -> boolean
+ // Returns true if the item is successfully added to the list.
   public boolean add(GroceryItem item) {
     if (size == max) {
       int i = 0;
@@ -54,9 +73,8 @@ class GroceryListArray implements IGroceryList {
   
    
   // String -> int
-  // Given the name of a GroceryItem, returns the
-  // corresponding GroceryItem index from the list. If it is not in the list,
-  //  returns -1
+  // Given the name of a GroceryItem, returns the corresponding GroceryItem index 
+  // from the list. If it is not in the list, returns -1
   int indexOf(String name) {
     for (int i = 0; i < this.size; i++) {
       if (this.items[i].equals(new GroceryItem(name, 0))) {
@@ -67,9 +85,13 @@ class GroceryListArray implements IGroceryList {
     return -1;
   }
   
-  // String -> boolean
-  // Given the name of a GroceryItem, determines if the GroceryItem is successfully removed from
-  // the GroceryListArray, returns false if not.
+  // Template
+  /*   this.item
+  *    newItem
+  */
+
+ // String -> boolean
+ // Returns true,iff an item is successfully removed from the list.
   public boolean remove(String name) {
     int i = 0;
     boolean isOnList = false;
@@ -86,10 +108,13 @@ class GroceryListArray implements IGroceryList {
     return isOnList;
   }
 
+  // Templates
+  /* this.items
+   * 
+   */
 
   // String -> boolean
-  // Given the name of a GroceryItem, returns true if the GorceryItme is sucessfully
-  // makredAsBought, returs false if not
+  // Returns true if an item is successfully bought and mark the box with an "x"
   public boolean markAsBought(String name) {
     int i = indexOf(name);
     if (i >= 0){
@@ -101,8 +126,8 @@ class GroceryListArray implements IGroceryList {
     }
   }
   
-  // ->
-  // Displays list of items
+ // void -> void
+ // Displays the information stored on the list.
   public void display() {
     for (int i = 0; i < this.size; i++) {
       System.out.println(items[i]);
